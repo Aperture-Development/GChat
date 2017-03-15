@@ -1,21 +1,36 @@
+const fs = require('fs')
 const app = require('express')()
 const bodyParser = require('body-parser')
 const http = require('http').Server(app)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
-// Port to listen on
-const port = 3000
+// Path to the configuration file
+const configFile = './config.json'
 
-// TODO move secret key to an independent file
-const secretKey = 'ABCDEF'
+if(!fs.existsSync(configFile)){
+  console.error(`Unable to find "${configFile}", terminating.`)
+  process.exit(1)
+}
+
+const config = require(configFile)
+
+if(!config.port){
+  console.log(`"port" not found in ${configFile}, terminating.`)
+  process.exit(1)
+}
+
+if(!config.secretKey){
+  console.log(`"secretKey" not found in ${configFile}, terminating.`)
+  process.exit(1)
+}
 
 const registeredIDs = {}
 const history = []
 
 // Returns true of the body contains a secret key and it corresponds with ours
 function isSecretKeyValid(body){
-  return 'secretKey' in body && body.secretKey === secretKey
+  return 'secretKey' in body && body.secretKey === config.secretKey
 }
 
 // Returns true if the body contains everything required for a registration of a client
@@ -99,6 +114,6 @@ app.post('/send', function(req, res){
   res.sendStatus(200)
 })
 
-http.listen(port, function(){
-  console.log('GChat server listening on *:' + port)
+http.listen(config.port, function(){
+  console.log('GChat server listening on *:' + config.port)
 })
