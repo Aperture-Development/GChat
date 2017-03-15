@@ -1,0 +1,14 @@
+{
+  "name": "gchat",
+  "version": "0.0.1",
+  "author": "Princess Celestia <celestia@unitedponyrepublic.eu>",
+  "description": "A simple chat server for use with Gmod.",
+  "private": true,
+  "dependencies": {
+    "express": "^4.15.2",
+    "body-parser": "^1.17.1"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}

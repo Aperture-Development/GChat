@@ -1,2 +1,2 @@
 # GChat
-Repositorie for the GChat -ACTIVE DEVELOPMENT-
+Repository for GChat -ACTIVE DEVELOPMENT-
