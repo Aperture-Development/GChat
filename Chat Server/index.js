@@ -15,6 +15,11 @@ if(!fs.existsSync(configFile)){
 
 const config = require(configFile)
 
+if(!config.ip){
+  console.log(`"ip" not found in ${configFile}, terminating.`)
+  process.exit(1)
+}
+
 if(!config.port){
   console.log(`"port" not found in ${configFile}, terminating.`)
   process.exit(1)
@@ -114,6 +119,6 @@ app.post('/send', function(req, res){
   res.sendStatus(200)
 })
 
-http.listen(config.port, function(){
-  console.log('GChat server listening on *:' + config.port)
+http.listen(config.port, config.ip, function(){
+  console.log(`GChat server listening on ${config.ip}:${config.port}`)
 })
