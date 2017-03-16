@@ -14,7 +14,7 @@ The chat server side of GChat. Receives registration requests from Gmod server a
     | `uniqueID`  | `string` |  `true`  | Unique ID (token) of the player to register   |
     | `steamID`   | `string` |  `true`  | Steam ID of the player                        |
     | `steamName` | `string` |  `true`  | Steam name (nick) of the player               |
-  * Response code: `200` on successful reqistration, `400` on failure
+  * Response code: `200` on successful registration, `400` on failure
   * Response data: `none`
 
 * ### Retrieve chat history
