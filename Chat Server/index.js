@@ -51,7 +51,7 @@ function isUniqueIDValid(body){
 // ----------------------------- Requests handling -----------------------------
 
 // Registration request from the server
-app.post('/registration', function(req, res){
+app.post('/register', function(req, res){
   if (!isSecretKeyValid(req.body)){
     console.error('No or invalid secret key received during uniqueID registration - ignoring.')
     res.sendStatus(400)
@@ -73,7 +73,7 @@ app.post('/registration', function(req, res){
 
 // Retrieve current chat history
 app.post('/history', function(req, res){
-  if(!('uniqueID' in req.body || !(req.body.uniqueID in registeredIDs))){
+  if(!('uniqueID' in req.body) || !(req.body.uniqueID in registeredIDs)){
     console.error('No or invalid uniqueID while trying to retrieve history - ignoring.')
     res.sendStatus(400)
     return
