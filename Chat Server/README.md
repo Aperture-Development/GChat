@@ -54,7 +54,7 @@ Used by Gmod server to completely "reset" the chat server - all current uniqueID
 
 * ### Send message
 Used by clients to send messages. Requests with unregistered uniqueID are ignored.
-  * URL: `/reset`
+  * URL: `/send`
   * Method: `POST`
   * Params:
 
